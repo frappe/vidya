@@ -1,0 +1,55 @@
+{% extends "templates/web.html" %}
+
+{% block header %}<h2>Vidya</h2>{% endblock %}
+
+{% block page_content %}
+<style>
+header, footer {
+	display: none;
+}
+</style>
+
+<div>
+	<textarea class='question form-control' placeholder='ask a question'></textarea>
+</div>
+<div class='padding'></div>
+<div class='list-group chat'>
+	{% for message in chat %}
+	<div class='list-group-item'>
+		{{ message.content }}
+	</div>
+	{% endfor %}
+</div>
+<script>
+frappe.ready(function() {
+	var chat = $('.chat');
+
+	var add_response = function(text, bold) {
+		var b = $("<div class='list-group-item'>").html(text).prependTo(chat);
+		if(bold) {
+			b.addClass('bold');
+		}
+	}
+
+	$('.question')
+		.on("keydown", function(e) {
+			if(e.which==13) {
+				var question = $(this).val();
+				add_response(question);
+				$(this).val('');
+
+				frappe.call({
+					method: 'vidya.api.respond',
+					args: {
+						q: question
+					},
+					callback: function(r) {
+						add_response(r.message, true);
+					}
+				});
+				return false;
+			}
+		});
+})
+</script>
+{% endblock %}

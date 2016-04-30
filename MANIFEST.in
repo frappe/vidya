@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include vidya *.css
+recursive-include vidya *.csv
+recursive-include vidya *.html
+recursive-include vidya *.ico
+recursive-include vidya *.js
+recursive-include vidya *.json
+recursive-include vidya *.md
+recursive-include vidya *.png
+recursive-include vidya *.py
+recursive-include vidya *.svg
+recursive-include vidya *.txt
+recursive-exclude vidya *.pyc
