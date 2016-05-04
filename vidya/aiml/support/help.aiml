@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml version="1.0">
+	<category>
+		<pattern>* ERPNEXT HELP</pattern>
+		<template>Are you hosting your ERP on erpnext.com</template>
+	</category>
+	<category>
+		<pattern>YES</pattern>
+		<that>ARE YOU HOSTING YOUR ERP ON ERPNEXT COM</that>
+		<template>Great, what is your account url</template>
+	</category>
+	<category>
+		<pattern>NO</pattern>
+		<that>ARE YOU HOSTING YOUR ERP ON ERPNEXT COM</that>
+		<template>Are you working with a partner?</template>
+	</category>
+	<category>
+		<pattern></pattern>
+		<that>GREAT WHAT IS YOUR ACCOUNT URL</that>
+		<template>
+			Are you reporting a bug or need help with a query?
+			<think><set account_id="erpnext"><star/></set></think>
+		</template>
+	</category>
+	<category>
+		<pattern>* BUG</pattern>
+		<that>ARE YOU REPORTING A BUG OR NEED HELP WITH A QUERY</that>
+		<template>
+			Thanks, try reporting it on https://github.com/frappe/erpnext
+		</template>
+	</category>
+	<category>
+		<pattern>* QUERY</pattern>
+		<that>ARE YOU REPORTING A BUG OR NEED HELP WITH A QUERY</that>
+		<template>What is your query, let me ask forward it to one of our agents.</template>
+	</category>
+</aiml>
